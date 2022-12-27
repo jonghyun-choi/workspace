@@ -1,0 +1,10 @@
+**/target/
+**/.vscode/
+**/.mvn/
+**/*.log
+**/.classpath
+**/.project
+**/.tern-project
+**/.factorypath
+**/.settings/
+**/.project/
