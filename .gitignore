@@ -1,10 +1,9 @@
-**/target/
-**/.vscode/
-**/.mvn/
-**/*.log
-**/.classpath
-**/.project
-**/.tern-project
-**/.factorypath
-**/.settings/
-**/.project/
+# vscode_workspace
+## spring-DI
+vscode_workspace/spring-DI/target/
+
+## spring-security
+vscode_workspace/spring-security/target/
+
+## spring-boot-jwt
+vscode_workspace/spring-boot-jwt/target/
