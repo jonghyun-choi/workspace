@@ -10,7 +10,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.playground.demo.component.Company;
 
 @Configuration
-public class ApplicationConfig {
+public class WebsocketConfig {
     @Value("${lx.pantos.nm}") 
     private String pantosNm;
     @Value("${lx.pantos.loc}") 
@@ -21,14 +21,14 @@ public class ApplicationConfig {
     @Value("${lx.intl.loc}")
     private String intlLoc;
     
-    @Bean(name="app_pantos")
-    @Scope(value=WebApplicationContext.SCOPE_APPLICATION, proxyMode=ScopedProxyMode.TARGET_CLASS)
+    @Bean(name="websocket_pantos")
+    @Scope(scopeName="websocket", proxyMode=ScopedProxyMode.TARGET_CLASS)
     public Company getPantos() {
         return new Company(pantosNm, pantosLoc);
     }
 
-    @Bean(name="app_international")
-    @Scope(value=WebApplicationContext.SCOPE_APPLICATION, proxyMode=ScopedProxyMode.TARGET_CLASS)
+    @Bean(name="websocket_international")
+    @Scope(scopeName="websocket", proxyMode=ScopedProxyMode.TARGET_CLASS)
     public Company getIntl() {
         return new Company(intlNm, intlLoc);
     }
