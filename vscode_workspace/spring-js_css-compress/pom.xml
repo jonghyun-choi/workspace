@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.test</groupId>
+	<artifactId>compress</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>JS_CSS_CompressTest</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.google.javascript/closure-compiler 
+		<dependency>
+			<groupId>com.google.javascript</groupId>
+			<artifactId>closure-compiler</artifactId>
+			<version>v20221102</version>
+		</dependency>
+		-->
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- spring maven plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- minify maven plugin -->
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.6</version>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- default path : spring-js_css-compress\src\main\webapp + 'myPath' -->
+					<charset>UTF-8</charset> <!-- 파일의 charset 설정.  -->
+					<cssSourceDir>css</cssSourceDir> <!-- css 폴더 위치 -->
+					<jsSourceDir>js</jsSourceDir> <!-- js 폴더 위치 -->
+					<jsEngine>CLOSURE</jsEngine> <!-- compressor engine 선택. (yui compressor || google closure) -->
+					<skipMerge>true</skipMerge> <!-- minified 완료된 파일과 원본 파일 병합 -->
+					<nosuffix>true</nosuffix> <!-- minified 된 파일에 suffix 추가 여부 -->
+					<!-- default path : spring-js_css-compress\ -->
+					<webappTargetDir>src/main/webapp/minify</webappTargetDir> <!-- minified된 파일들 결과물 위치 -->
+					<cssSourceIncludes>
+						<cssSourceInclude>**/*.css</cssSourceInclude>
+					</cssSourceIncludes>
+					<cssSourceExcludes>
+						<cssSourceExclude>**/*.min.css</cssSourceExclude>
+					</cssSourceExcludes>
+					<jsSourceIncludes>
+						<jsSourceInclude>**/*.js</jsSourceInclude>
+					</jsSourceIncludes>
+					<jsSourceExcludes>
+						<jsSourceExclude>**/*.min.js</jsSourceExclude>
+						<jsSourceExclude>**/*-debug.js</jsSourceExclude>
+					</jsSourceExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
