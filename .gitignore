@@ -10,3 +10,6 @@ vscode_workspace/spring-boot-jwt/target/
 
 ## spring-js_css-compress
 vscode_workspace/spring-js_css-compress/target/
+
+## webpack-demo
+vscode_workspace/webpack-demo/node_modules
