@@ -5,10 +5,10 @@ const json5 = require('json5');
 
 // https://webpack.kr/concepts/entry-points/
 module.exports = {
-  entry: './src/index_with_asset.js',
+  entry: './src/asset_mgmt/index_with_asset.js',
   output: {
-    filename: 'withStyle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: './asset_mgmt/asset.js',
+    path: path.resolve(__dirname, '..', 'dist'),
   },
   
   module: {
