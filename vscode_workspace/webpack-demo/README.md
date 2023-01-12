@@ -40,3 +40,9 @@
 
 3. npm install toml yamljs json5 --save-dev
 > yaml, json, toml parsers
+
+# Output management
+1. npm install --save-dev html-webpack-plugin
+> js 기준 output들을 구동하는 html 파일을 자동 생성
+
+- config > output 항목에 clean: true 값 추가 시 build 이전 자료 삭제

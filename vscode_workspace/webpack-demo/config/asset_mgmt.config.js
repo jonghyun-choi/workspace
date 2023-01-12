@@ -9,6 +9,7 @@ module.exports = {
   output: {
     filename: './asset_mgmt/asset.js',
     path: path.resolve(__dirname, '..', 'dist'),
+    clean: true,
   },
   
   module: {

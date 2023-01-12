@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config config/start.config.js",
-    "build_lodash": "webpack --config config/start_with_lodash.config.js",
-    "build_asset": "webpack --config config/asset_mgmt.config.js"
+    "build_start_with_lodash": "webpack --config config/start_with_lodash.config.js",
+    "build_asset_mgmt": "webpack --config config/asset_mgmt.config.js",
+    "build_output_mgmt": "webpack --config config/output_mgmt.config.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "css-loader": "^6.7.3",
     "csv-loader": "^3.0.5",
+    "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "toml": "^3.0.0",
     "webpack": "^5.75.0",
