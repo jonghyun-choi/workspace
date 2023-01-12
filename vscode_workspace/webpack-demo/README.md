@@ -30,3 +30,13 @@
     - npm run build === npx webpack
     - npm run build_lodash === npx webpack --config webpack2.config.js
 
+# Assests
+1. npm install --save-dev style-loader css-loader
+> Javascript module에 CSS를 포함하기 위해서는 style-loader 와 css-loader 을 사용한다.
+> webpack_asset.config.js의 구성은 module임으로 input 항목에 CSS를 추가 하기 위해서 사용한다.
+
+2. npm install --save-dev csv-loader xml-loader
+> Javascript module에 CSVs, TSVs, and XML 을 추가하기 위해서 필요한 packages
+
+3. npm install toml yamljs json5 --save-dev
+> yaml, json, toml parsers
