@@ -7,7 +7,7 @@ const json5 = require('json5');
 module.exports = {
   entry: './src/asset_mgmt/index_with_asset.js',
   output: {
-    filename: './asset_mgmt/asset.js',
+    filename: 'asset.js',
     path: path.resolve(__dirname, '..', 'dist'),
     clean: true,
   },

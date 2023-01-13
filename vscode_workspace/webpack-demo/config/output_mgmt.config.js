@@ -14,8 +14,8 @@ module.exports = {
         }),
     ],
     output: {
-        filename: './output_mgmt/bundle.js',
-        filename: './output_mgmt/[name].bundle.js',
+        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, '..', 'dist'),
         clean: true,
     },

@@ -8,7 +8,11 @@
     "build": "webpack --config config/start.config.js",
     "build_start_with_lodash": "webpack --config config/start_with_lodash.config.js",
     "build_asset_mgmt": "webpack --config config/asset_mgmt.config.js",
-    "build_output_mgmt": "webpack --config config/output_mgmt.config.js"
+    "build_output_mgmt": "webpack --config config/output_mgmt.config.js",
+    "build_dev": "webpack --config config/dev.config.js",
+    "watch_dev": "webpack --watch --config config/dev.config.js",
+    "start_dev": "webpack serve --open --config config/dev.config.js",
+    "server_dev": "node dev/server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,11 +20,14 @@
   "devDependencies": {
     "css-loader": "^6.7.3",
     "csv-loader": "^3.0.5",
+    "express": "^4.18.2",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "toml": "^3.0.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
+    "webpack-dev-middleware": "^6.0.1",
+    "webpack-dev-server": "^4.11.1",
     "xml-loader": "^1.2.1"
   },
   "dependencies": {

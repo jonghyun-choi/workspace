@@ -45,4 +45,30 @@
 1. npm install --save-dev html-webpack-plugin
 > js 기준 output들을 구동하는 html 파일을 자동 생성
 
-- config > output 항목에 clean: true 값 추가 시 build 이전 자료 삭제
+- config > output 항목에 clean: true 값 추가 시 build 이전 자료 삭제 (dist 내 자료 삭제 후 compile)
+
+# Development
+- dev.config.js
+> mode : 'development'
+> devtool: 'inline-source-map'
+
+- devtool options
+1. webpack's Watch Mode
+    > webpack --watch
+    >   the code will be recompiled on change.
+2. webpack-dev-server
+    > npm install --save-dev webpack-dev-server
+    > devServer: { static: './dist', }, optimization: { runtimeChunk: 'single', },
+    > "start": "webpack serve --open",
+    > !dist 폴더에 output이 생성되지 않음.!
+    > !output은 in memory에 존재!
+    > !internally webpack-dev-middleware 사용!
+3. webpack-dev-middleware
+    > npm install --save-dev express webpack-dev-middleware
+    > publicPath: '/',
+    > "server": "node server.js",
+    > !express로 로컬서버 띄움!
+    > !이외 상동!
+
+# Code splitting
+https://webpack.js.org/guides/code-splitting/
