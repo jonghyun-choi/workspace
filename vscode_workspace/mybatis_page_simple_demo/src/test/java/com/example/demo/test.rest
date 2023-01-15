@@ -1,0 +1,14 @@
+### 
+GET http://localhost:8080/
+
+### 
+GET http://localhost:8080/like
+
+### 
+GET http://localhost:8080/update
+
+### 
+GET http://localhost:8080/tx
+
+### 
+GET http://localhost:8080/batch_read
