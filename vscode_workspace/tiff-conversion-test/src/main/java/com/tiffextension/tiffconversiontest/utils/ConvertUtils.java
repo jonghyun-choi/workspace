@@ -56,16 +56,22 @@ public class ConvertUtils {
 
     public void convert_tiff_to_pdf(MultipartFile multipartFile, String paperSize, float zoom) throws IOException, DocumentException {
         RandomAccessFileOrArray raf = this.readMultiFile(multipartFile);
-        // (FileOutputStream) this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"));
         Rectangle rectangle = this.getPageSize(paperSize);
-        this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"), rectangle, zoom);
+        FileOutputStream fos = (FileOutputStream) this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"), rectangle, zoom);
+        fos.close();
+        raf.close();
     }
 
     public byte[] convert_tiff_to_pdf_byte(MultipartFile multipartFile, String paperSize, float zoom) throws IOException, DocumentException {
         RandomAccessFileOrArray raf = this.readMultiFile(multipartFile);
         Rectangle rectangle = this.getPageSize(paperSize);
-        ByteArrayOutputStream baos = (ByteArrayOutputStream) this.readTiff(raf, new ByteArrayOutputStream(), rectangle, zoom);
-        byte[] output = baos.toByteArray();
-        return output;
+        try(ByteArrayOutputStream baos = (ByteArrayOutputStream) this.readTiff(raf, new ByteArrayOutputStream(), rectangle, zoom)) {
+            byte[] output = baos.toByteArray();
+            raf.close();
+            return output;
+        } catch(IOException e) {
+            raf.close();
+            return null;
+        }
     }
 }
