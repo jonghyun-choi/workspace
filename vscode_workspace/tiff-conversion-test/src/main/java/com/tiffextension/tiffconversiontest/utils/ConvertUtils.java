@@ -1,12 +1,10 @@
 package com.tiffextension.tiffconversiontest.utils;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.util.stream.IntStream;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.io.RandomAccessSource;
 import com.itextpdf.text.io.RandomAccessSourceFactory;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -31,32 +31,41 @@ public class ConvertUtils {
         return raf;
     }
 
-    private OutputStream readTiff(RandomAccessFileOrArray raf, OutputStream os) throws DocumentException {
+    private OutputStream readTiff(RandomAccessFileOrArray raf, OutputStream os, Rectangle paperSize, float zoom) throws DocumentException {
         int pageSize = TiffImage.getNumberOfPages(raf);
-        Document document = new Document();
+        Document document = new Document(paperSize, 0, 0, 0, 0);
         PdfWriter.getInstance(document, os);
         document.open();
         for(int pageNum = 1; pageNum <= pageSize; pageNum++) {
             Image image = TiffImage.getTiffImage(raf, pageNum);
+            image.scalePercent(zoom);
             document.add(image);
         }
         document.close();
         return os;
     }
 
-    public void convert_tiff_to_pdf(MultipartFile multipartFile) throws IOException, DocumentException {
-        RandomAccessFileOrArray raf = this.readMultiFile(multipartFile);
-        FileOutputStream fos = (FileOutputStream) this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"));
-        raf.close();
-        fos.close();
+    private Rectangle getPageSize(String paperSize) {
+        try {
+            return Optional.ofNullable(paperSize).isPresent() ? PageSize.getRectangle(paperSize) : PageSize.A4;
+        }
+        catch(RuntimeException e) {
+            return PageSize.A4;
+        }
     }
 
-    public byte[] convert_tiff_to_pdf_byte(MultipartFile multipartFile) throws IOException, DocumentException {
+    public void convert_tiff_to_pdf(MultipartFile multipartFile, String paperSize, float zoom) throws IOException, DocumentException {
         RandomAccessFileOrArray raf = this.readMultiFile(multipartFile);
-        ByteArrayOutputStream baos = (ByteArrayOutputStream) this.readTiff(raf, new ByteArrayOutputStream());
+        // (FileOutputStream) this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"));
+        Rectangle rectangle = this.getPageSize(paperSize);
+        this.readTiff(raf, new FileOutputStream("c:\\convert\\output.pdf"), rectangle, zoom);
+    }
+
+    public byte[] convert_tiff_to_pdf_byte(MultipartFile multipartFile, String paperSize, float zoom) throws IOException, DocumentException {
+        RandomAccessFileOrArray raf = this.readMultiFile(multipartFile);
+        Rectangle rectangle = this.getPageSize(paperSize);
+        ByteArrayOutputStream baos = (ByteArrayOutputStream) this.readTiff(raf, new ByteArrayOutputStream(), rectangle, zoom);
         byte[] output = baos.toByteArray();
-        baos.close();
-        raf.close();
         return output;
     }
 }

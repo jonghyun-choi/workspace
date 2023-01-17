@@ -30,24 +30,31 @@ public class ConvertController {
         this.utils = utils;
     }
 
-    @GetMapping("hello_world")
-    public String hello_world() {
-        return "hello world";
-    }
-
     @PostMapping("tiff_to_pdf")
-    public void tiff_to_pdf(@RequestParam(required=true, value="candidate") MultipartFile file) throws IOException, DocumentException {
-        utils.convert_tiff_to_pdf(file);
+    public void tiff_to_pdf(
+        @RequestParam(required=true, value="candidate") MultipartFile file,
+        @RequestParam(required=true, value="paperSize") String paperSize,
+        @RequestParam(required=true, value="zoom") float zoom
+    ) throws IOException, DocumentException {
+        utils.convert_tiff_to_pdf(file, paperSize, zoom);
     }
 
     @PostMapping("tiff_to_pdf_byte")
-    public @ResponseBody byte[] tiff_to_pdf_byte(@RequestParam(required=true, value="candidate") MultipartFile file) throws IOException, DocumentException {
-        return utils.convert_tiff_to_pdf_byte(file);
+    public @ResponseBody byte[] tiff_to_pdf_byte(
+        @RequestParam(required=true, value="candidate") MultipartFile file,
+        @RequestParam(required=true, value="paperSize") String paperSize,
+        @RequestParam(required=true, value="zoom") float zoom
+    ) throws IOException, DocumentException {
+        return utils.convert_tiff_to_pdf_byte(file, paperSize, zoom);
     }
 
     @PostMapping("tiff_to_pdf_file")
-    public ResponseEntity<Resource> tiff_to_pdf_file(@RequestParam(required=true, value="candidate") MultipartFile file) throws IOException, DocumentException {
-        ByteArrayResource bar = new ByteArrayResource(utils.convert_tiff_to_pdf_byte(file));
+    public ResponseEntity<Resource> tiff_to_pdf_file(
+        @RequestParam(required=true, value="candidate") MultipartFile file,
+        @RequestParam(required=true, value="paperSize") String paperSize,
+        @RequestParam(required=true, value="zoom") float zoom
+    ) throws IOException, DocumentException {
+        ByteArrayResource bar = new ByteArrayResource(utils.convert_tiff_to_pdf_byte(file, paperSize, zoom));
         return ResponseEntity.ok()
         .contentType(MediaType.APPLICATION_PDF)
         .contentLength(bar.contentLength())
