@@ -44,4 +44,16 @@ public class DatasourceConfig {
 
 	// todo : research about SqlSessionTemplate
 	// todo : research about DataTransactionManager
+	/*
+	@Bean(name = "h2SqlSessionTemplate")
+	public SqlSessionTemplate mainSqlSessionTemplate(@Qualifier("h2SessionFactory") SqlSessionFactory sqlSessionFactory) {
+		return new SqlSessionTemplate(sqlSessionFactory);
+	}
+
+	@Bean(name = "h2Tx")
+	DataSourceTransactionManager mainTx(@Qualifier("h2DataSource") DataSource datasource) {
+		DataSourceTransactionManager txm  = new DataSourceTransactionManager(datasource);
+		return txm;
+	}
+	*/
 }
