@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/mobile_front.css">
+</head>
+<body>
+    <div id="app">
+        <div id="wrapper" :class="isMenuOpened">
+            <page-header></page-header>
+            <search-bar></search-bar>
+            <aside-menu></aside-menu>
+            <program-wrapper></program-wrapper>
+        </div>
+    </div>
+
+    <!-- [Vue.js] import components -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.js"></script>
+    <script src="./component/PageHeader.vue.js"></script>
+    <script src="./component/AsideMenu.vue.js"></script>
+    <script src="./component/SearchBar.vue.js"></script>
+    <script src="./component/ProgramTitle.vue.js"></script>
+    <script src="./component/ProgramWrapper.vue.js"></script>
+    <script src="./component/DashboardSummary.vue.js"></script>
+    <script src="./component/DashboardTable.vue.js"></script>
+
+    <!-- [Vue.js] import pages -->
+    <script src="./page/MyDashboard.vue.js"></script>
+    <script src="./page/TrackingList.vue.js"></script>
+
+    <!-- [Vue.js] init -->
+    <script>
+        const store = new Vuex.Store({
+            state : {
+                isMenuOpened : false,
+                isSrchOpened : false
+            },
+            mutations: {
+                toggleMenu(state) {
+                    state.isMenuOpened = !state.isMenuOpened;
+                },
+                toggleSrch(state) {
+                    state.isSrchOpened = !state.isSrchOpened;
+                }
+            }
+        });
+
+        const vueApp = new Vue({
+            el: '#app',
+            store,
+            data : {
+                // isMenuOpened : false,
+            },
+            methods: { },
+            computed: {
+                isMenuOpened() { return this.$store.state.isMenuOpened ? 'menu-on' : ''; }
+            }
+        });
+    </script>
+</body>
+</html>

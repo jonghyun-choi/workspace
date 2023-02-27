@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Page</title>
+    <style>
+        /* Normalize styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set font properties */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            padding: 0 20px;
+        }
+
+        .hamburger {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .hamburger img {
+            width: 30px;
+            height: auto;
+        }
+
+        /* Content styles */
+        .content {
+            padding: 20px;
+        }
+
+        /* Mobile menu styles */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            display: none;
+        }
+
+        .menu {
+            position: fixed;
+            top: 60px;
+            left: -200px;
+            width: 200px;
+            height: 100%;
+            background-color: #fff;
+            z-index: 2;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .menu.open {
+            left: 0;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .menu ul li {
+            margin-bottom: 10px;
+        }
+
+        .menu ul li a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .menu ul li a:hover {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <button class="hamburger" @click="showMenu = !showMenu">
+                <img src="hamburger.png" alt="Hamburger icon">
+            </button>
+        </header>
+        <!-- <div class="menu-overlay" v-if="showMenu" @click="showMenu = false"></div> -->
+        <div class="menu-overlay" v-if="showMenu" @click="closeMenu"></div>
+        <nav class="menu" :class="{ 'open': showMenu }">
+            <ul>
+                <li><a href="#">Menu Item 1</a></li>
+                <li><a href="#">Menu Item 2</a></li>
+                <li><a href="#">Menu Item 3</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <h1>Welcome to my mobile page!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat convallis lacus, id fringilla urna sagittis vel. Suspendisse tristique ligula sit amet dolor malesuada, a cursus magna iaculis. Nam et est vel quam rhoncus elementum sed in mi.</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                showMenu: false
+            },
+            methods: {
+                closeMenu() {
+                    console.log('closeMenu invoked')
+                    if (!this.$refs.menu.contains(event.target)) {
+                        this.showMenu = false;
+                    }
+                }
+        }
+        });
+    </script>
+</body>
+</html>

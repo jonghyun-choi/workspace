@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@4.1.6/dist/vue-router.global.min.js"></script>
+</head>
+<body>
+  <h1>hi</h1>
+  <div id="app">
+    <ul>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/about">About</router-link></li>
+    </ul>
+    <router-view></router-view>
+  </div>
+
+  <script>
+    const Home = { template: '<div>Home</div>' }
+    const About = { template: '<div>About</div>' }
+
+    const router = new VueRouter({
+      routes: [
+        { path: '/', component: Home },
+        { path: '/about', component: About }
+      ]
+    })
+
+    const app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hamburger Side Menu</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <button class="hamburger-btn" @click="toggleMenu">☰</button>
+        <h1>Header</h1>
+      </header>
+      <div class="container">
+        <aside v-show="showMenu">
+          <ul>
+            <li>Menu item 1</li>
+            <li>Menu item 2</li>
+            <li>Menu item 3</li>
+          </ul>
+        </aside>
+        <main>
+          <h2>Content</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, magna a aliquet aliquet, nibh nibh bibendum erat, et ullamcorper nisl magna non sapien.</p>
+        </main>
+      </div>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            showMenu: false
+          }
+        },
+        methods: {
+          toggleMenu() {
+            this.showMenu = !this.showMenu;
+          }
+        }
+      });
+      app.mount('#app');
+    </script>
+    <style>
+      #app {
+        height: 100vh;
+        position: relative;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background-color: #f2f2f2;
+      }
+
+      .hamburger-btn {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        height: calc(100vh - 60px);
+      }
+
+      aside {
+        display: flex;
+        flex-direction: column;
+        background-color: #f2f2f2;
+      }
+
+      aside ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      aside li {
+        margin: 0.5rem 0;
+      }
+
+      main {
+        background-color: #fff;
+        padding: 1rem;
+      }
+    </style>
+  </body>
+</html>
