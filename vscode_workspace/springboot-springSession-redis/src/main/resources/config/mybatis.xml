@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="useActualParamName" value="true" />
+		<setting name="defaultFetchSize" value="100" />
+		<setting name="useActualParamName" value="true" />
+	</settings>
+
+	<typeAliases>
+		<!-- <typeAlias alias="book" type="com.example.springbootfilter_interceptor_aop.api.book.Book" /> -->
+		<package name="com.example.springbootfilter_interceptor_aop.model" />
+	</typeAliases>
+	<typeHandlers>
+        <!-- 
+		<typeHandler handler="org.apache.ibatis.type.StringTypeHandler" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+		<typeHandler handler="org.apache.ibatis.type.StringTypeHandler" jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime" />
+        -->
+	</typeHandlers>
+</configuration>
