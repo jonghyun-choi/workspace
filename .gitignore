@@ -23,3 +23,6 @@ vscode_workspace/springboot-filter_interceptor_aop/target/
 ## embeddedVue
 vscode_workspace/embeddedVue/img/
 vscode_workspace/embeddedVue/style/
+
+## springboot-springSession-redis
+vscode_workspace/springboot-springSession-redis/target/
