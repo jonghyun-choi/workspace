@@ -58,3 +58,28 @@
 - provides the necessary dependencies to use Redis as a data store, including the Redis client library Lettuce.
 2. spring-session-data-redis
 - automatically registers the RedisHttpSessionConfiguration class, which provides the configuration required to store sessions in Redis. This class uses the spring-boot-starter-data-redis dependency to interact with Redis.
+
+
+
+# redis structure
+- 데이터베이스 schema는 숫자로 변경
+  `SELECT #`
+
+- {Key : Value} pair
+- Value 내 {HashKey : Value} 으로 구성
+  ```
+  {
+    key : myDataKey
+    value : {
+      hashkey1 : actualValue1,
+      hashKey2 : actualValue2,
+      ...
+    }
+  }
+  ```
+
+- Single thread
+  command 시 blocking 여부 확인 필수 (시간 오래 걸리는 O(N) process는 O(1) 으로 변환)
+
+
+# IDE tool : P3X REDIS UI 사용중.

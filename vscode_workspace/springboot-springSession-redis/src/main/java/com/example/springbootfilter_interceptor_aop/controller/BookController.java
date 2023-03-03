@@ -18,13 +18,8 @@ public class BookController {
     
     @GetMapping("/user/book/inqBookInfo")
     public ResponseEntity<String> inqBookInfo(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if(Objects.isNull(session)) {
-            session = request.getSession();
-        }
-        
-        session.setAttribute("testKey", "testValue");
         String message = "inqBookInfo!";
+        log.info("BookController >>> returning {}", message);
         return ResponseEntity.ok().body(message);
     }
 
