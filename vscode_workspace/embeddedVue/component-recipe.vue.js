@@ -80,6 +80,9 @@ Vue.component("my-component-name", {
         'toUppercase' : (value) => { return value.toUppercase() }
     },
 
+    // adding common features by using "Vue.mixin"
+    mixins : ["myMixin1", "myMixin2" /* , ... */],
+
     // todo
     model : {},
     provide : () => { return {}},
